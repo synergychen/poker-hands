@@ -2,6 +2,7 @@ require "./card"
 
 class Deck
   attr_reader :cards
+
   def initialize(suits, numbers)
     @suits = suits
     @numbers = numbers

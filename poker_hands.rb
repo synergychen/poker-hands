@@ -4,6 +4,7 @@ require "./highest_hand"
 
 class PokerHands
   NUMBER_OF_CARDS = 5
+
   attr_reader :players_and_cards
 
   def initialize(deck)

@@ -1,6 +1,22 @@
-require "./card"
-
 class HighestHand
+  CARD_NUMBERS_OF_A_SUIT = 13
+  CARD_NUMBERS_HASH = {
+    "1" => 1,
+    "2" => 2,
+    "3" => 3,
+    "4" => 4,
+    "5" => 5,
+    "6" => 6,
+    "7" => 7,
+    "8" => 8,
+    "9" => 9,
+    "T" => 10,
+    "J" => 11,
+    "Q" => 12,
+    "K" => 13,
+    "A" => 14
+  }
+
   def initialize(cards)
     @cards = cards
     @suits = @cards.map { |card| card.suit }
@@ -69,7 +85,7 @@ class HighestHand
 
   def print_highest_card_value
     print "High card: "
-    puts number_to_string(@transferred_numbers.sort[-1])
+    number_to_string(@transferred_numbers.sort[-1])
   end
 
   def uniq_numbers
@@ -82,36 +98,18 @@ class HighestHand
     end
   end
 
-  def string_to_number(number)
-    if number == "T"
-      10
-    elsif number == "J"
-      11
-    elsif number == "Q"
-      12
-    elsif number == "K"
-      13
-    elsif number == "A"
-      14
-    else
-      number.to_i
-    end
+  def string_to_number(string)
+    CARD_NUMBERS_HASH["#{string}"]
   end
 
-  def number_to_string(string)
-    if string == 10
-      "T"
-    elsif string == 11
-      "J"
-    elsif string == 12
-      "Q"
-    elsif string == 13
-      "K"
-    elsif string == 14
-      "A"
-    else
-      string.to_i
+  def number_to_string(number)
+    result = []
+    CARD_NUMBERS_HASH.each do |k, v|
+      if number == v
+        result << k
+      end
     end
+    result.first
   end
 
   def same_suit?
