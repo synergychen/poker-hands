@@ -1,9 +1,13 @@
 require "./card"
 require "./deck"
+require "./highest_hand"
 
 class PokerHands
+  attr_reader :players_and_cards
+
   def initialize(deck)
     @cards = deck.cards
+    @player_cards = []
   end
 
   def play
@@ -15,8 +19,9 @@ class PokerHands
   def run_player(player_number)
     puts "Player #{player_number}"
     puts "--------"
-    player_cards = pick_up_five_cards_from_deck
-    print_hands(player_cards)
+    @player_cards = pick_up_five_cards_from_deck
+    print_hands(@player_cards)
+    print_result(@player_cards)
   end
 
   private
@@ -27,8 +32,13 @@ class PokerHands
 
   def print_hands(cards)
     cards.each do |card|
-      puts card.suit + card.number
+      puts card.number + card.suit
     end
+  end
+
+  def print_result(cards)
+    highest_hand = HighestHand.new(cards)
+    puts highest_hand.get_result
   end
 
   def print_left_cards_number
