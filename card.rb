@@ -11,5 +11,5 @@ class Card
   end
 end
 
-card = Card.new({ suit: "D", number: "9" })
-card.print_suit_and_number
+# card = Card.new({ suit: "D", number: "9" })
+# card.print_suit_and_number
