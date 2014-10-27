@@ -3,6 +3,7 @@ require "./deck"
 require "./highest_hand"
 
 class PokerHands
+  NUMBER_OF_CARDS = 5
   attr_reader :players_and_cards
 
   def initialize(deck)
@@ -11,7 +12,7 @@ class PokerHands
   end
 
   def play
-    (1..4).each do |player_number|
+    (1..NUMBER_OF_CARDS-1).each do |player_number|
       run_player(player_number)
     end
   end
@@ -27,7 +28,7 @@ class PokerHands
   private
 
   def pick_up_five_cards_from_deck
-    @cards.pop(5)
+    @cards.pop(NUMBER_OF_CARDS)
   end
 
   def print_hands(cards)

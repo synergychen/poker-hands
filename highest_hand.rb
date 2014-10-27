@@ -4,12 +4,11 @@ class HighestHand
   def initialize(cards)
     @cards = cards
     @suits = @cards.map { |card| card.suit }
-    @transferred_numbers = @cards.map { |card| string_to_new_number(card.number) }
-    @number_of_cards = 5
+    @transferred_numbers = @cards.map { |card| string_to_number(card.number) }
+    @number_of_cards = PokerHands::NUMBER_OF_CARDS
   end
 
   def get_result
-    # puts uniq_numbers_count
     if straight_flush?
     elsif four_of_a_kind?
       puts "four of a kind"
@@ -24,7 +23,7 @@ class HighestHand
     elsif one_pair?
       puts "one pair"
     else
-      puts "high card"
+      print_highest_card_value
     end
   end
 
@@ -68,6 +67,11 @@ class HighestHand
     end
   end
 
+  def print_highest_card_value
+    print "High card: "
+    puts number_to_string(@transferred_numbers.sort[-1])
+  end
+
   def uniq_numbers
     @transferred_numbers.uniq.sort
   end
@@ -78,7 +82,7 @@ class HighestHand
     end
   end
 
-  def string_to_new_number(number)
+  def string_to_number(number)
     if number == "T"
       10
     elsif number == "J"
@@ -91,6 +95,22 @@ class HighestHand
       14
     else
       number.to_i
+    end
+  end
+
+  def number_to_string(string)
+    if string == 10
+      "T"
+    elsif string == 11
+      "J"
+    elsif string == 12
+      "Q"
+    elsif string == 13
+      "K"
+    elsif string == 14
+      "A"
+    else
+      string.to_i
     end
   end
 
