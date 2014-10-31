@@ -1,6 +1,6 @@
 # Poker Hands
 
-Poker game: Generate a round of Five Card Stud, display the cards in each hand, and display
+Poker game: generate a round of Five Card Stud, display the cards in each hand, and display
 the value of the hand.
 
 ## Example
